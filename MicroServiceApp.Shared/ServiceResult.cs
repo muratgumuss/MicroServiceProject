@@ -44,7 +44,6 @@ namespace MicroServiceApp.Shared
                 Fail = problemDetails
             };
         }
-
         public static ServiceResult Error(string title, string description, HttpStatusCode status)
         {
             return new ServiceResult
