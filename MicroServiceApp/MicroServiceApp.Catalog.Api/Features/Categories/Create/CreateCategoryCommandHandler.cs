@@ -1,11 +1,4 @@
-﻿using MassTransit;
-using MediatR;
-using MicroServiceApp.Catalog.Api.Repositories;
-using MicroServiceApp.Shared;
-using Microsoft.EntityFrameworkCore;
-using System.Net;
-
-namespace MicroServiceApp.Catalog.Api.Features.Categories.Create
+﻿namespace MicroServiceApp.Catalog.Api.Features.Categories.Create
 {
     public class CreateCategoryCommandHandler(AppDbContext context) : IRequestHandler<CreateCategoryCommand, ServiceResult<CreateCategoryResponse>>
     {
