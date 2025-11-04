@@ -21,9 +21,9 @@
         {
             group.MapGet("/",
                     async (IMediator mediator) =>
-                        (await mediator.Send(new GetAllCategoriesQuery())).ToGenericResult());
+                        (await mediator.Send(new GetAllCategoriesQuery())).ToGenericResult()).WithName("GetAllCategory");
                 //.MapToApiVersion(1, 0)
-                //.WithName("GetAllCategory").RequireAuthorization(policyNames: "ClientCredential");
+                //.RequireAuthorization(policyNames: "ClientCredential");
 
 
             return group;
