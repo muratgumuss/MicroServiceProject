@@ -10,7 +10,7 @@ namespace MicroServiceApp.Catalog.Api.Features.Categories.Create
                     async (CreateCategoryCommand command, IMediator mediator) =>
                         (await mediator.Send(command)).ToGenericResult())
                 .WithName("CreateCategory")
-                //.MapToApiVersion(1, 0)
+                .MapToApiVersion(1, 0)
                 .AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
 
 

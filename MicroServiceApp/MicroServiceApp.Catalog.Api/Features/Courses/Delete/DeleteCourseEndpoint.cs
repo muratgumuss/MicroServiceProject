@@ -23,8 +23,8 @@
             group.MapDelete("/{id:guid}",
                     async (IMediator mediator, Guid id) =>
                         (await mediator.Send(new DeleteCourseCommand(id))).ToGenericResult())
-                .WithName("DeleteCourse");
-              //  .MapToApiVersion(1, 0).RequireAuthorization(policyNames: "InstructorPolicy");
+                .WithName("DeleteCourse")
+                .MapToApiVersion(1, 0).RequireAuthorization(policyNames: "InstructorPolicy");
 
             return group;
         }
