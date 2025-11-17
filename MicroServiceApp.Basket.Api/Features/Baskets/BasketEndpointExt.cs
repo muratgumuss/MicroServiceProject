@@ -1,5 +1,9 @@
 ﻿using Asp.Versioning.Builder;
 using MicroServiceApp.Basket.Api.Features.Baskets.AddBasketItem;
+using MicroServiceApp.Basket.Api.Features.Baskets.ApplyDiscountCoupon;
+using MicroServiceApp.Basket.Api.Features.Baskets.DeleteBasketItem;
+using MicroServiceApp.Basket.Api.Features.Baskets.GetBasket;
+using MicroServiceApp.Basket.Api.Features.Baskets.RemoveDiscountCoupon;
 
 namespace MicroServiceApp.Basket.Api.Features.Baskets
 {
@@ -9,11 +13,11 @@ namespace MicroServiceApp.Basket.Api.Features.Baskets
         {
             app.MapGroup("api/v{version:apiVersion}/baskets").WithTags("Baskets")
                 .WithApiVersionSet(apiVersionSet)
-                .AddBasketItemGroupItemEndpoint();
-                //.DeleteBasketItemGroupItemEndpoint()
-                //.GetBasketGroupItemEndpoint()
-                //.ApplyDiscountCouponGroupItemEndpoint()
-                //.RemoveDiscountCouponGroupItemEndpoint()
+                .AddBasketItemGroupItemEndpoint()
+                .DeleteBasketItemGroupItemEndpoint()
+                .GetBasketGroupItemEndpoint()
+                .ApplyDiscountCouponGroupItemEndpoint()
+                .RemoveDiscountCouponGroupItemEndpoint();
                 //.RequireAuthorization("Password");
         }
     }
