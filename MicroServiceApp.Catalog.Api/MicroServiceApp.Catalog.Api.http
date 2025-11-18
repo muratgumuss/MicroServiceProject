@@ -10,7 +10,7 @@ Post {{baseAddress}}/api/v1/categories
 Accept: application/json
 Content-Type: application/json
 {
-  "name": "Category 1"
+  "name": "Category 3"
 }
 ###
 GET {{baseAddress}}/api/v1/categories/{{categoryId}}
