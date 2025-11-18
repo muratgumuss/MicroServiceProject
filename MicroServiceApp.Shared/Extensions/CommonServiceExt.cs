@@ -16,7 +16,7 @@ namespace MicroServiceApp.Shared.Extensions
             services.AddValidatorsFromAssemblyContaining(assembly);
             services.AddScoped<IIdentityService, IdentityServiceFake>();
 
-            services.AddAutoMapper(assembly);
+            services.AddAutoMapper(cfg => { }, assembly.Assembly);
             //services.AddExceptionHandler<GlobalExceptionHandler>();
             return services;
         }
