@@ -1,4 +1,7 @@
 using MicroServiceApp.Discount.Api;
+using MicroServiceApp.Discount.Api.Features.Discounts;
+using MicroServiceApp.Discount.Api.Options;
+using MicroServiceApp.Discount.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,9 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddVersioningExt();
+builder.Services.AddOptionsExt();
+builder.Services.AddDatabaseServiceExt();
 builder.Services.AddCommonServiceExt(typeof(DiscountAssembly));
 var app = builder.Build();
-
+app.AddDiscountGroupEndpointExt(app.AddVersionSetExt());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

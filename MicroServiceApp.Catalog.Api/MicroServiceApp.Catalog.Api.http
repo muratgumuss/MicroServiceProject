@@ -1,7 +1,7 @@
 @baseAddress = http://localhost:5022
-@categoryId=08de1bad-47c3-0a30-3473-5af664580000
-@courseId=08de1bad-0b1d-c06e-3473-5af664580000
-@userId=64580000-5af6-3473-8d80-08de1bad0b1d
+@categoryId=08de2828-2979-b5b0-3473-5af664580000
+@courseId=08de2828-29ed-e5f0-3473-5af664580000
+@userId=64580000-5af6-3473-e09e-08de282829ed
 
 GET {{baseAddress}}/api/v1/categories
 Accept: application/json
@@ -34,7 +34,7 @@ Content-Type: application/json
 {
   "Id": "{{courseId}}",
   "name": "New Course 33",
-  "description": "This is a new course 33",
+  "description": "This is a new course 35",
   "price": 199.99,
   "categoryId": "{{categoryId}}"
 }
