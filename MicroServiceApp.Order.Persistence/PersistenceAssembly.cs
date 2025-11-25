@@ -1,7 +1,4 @@
 ﻿namespace MicroServiceApp.Order.Persistence
 {
-    public class Class1
-    {
-
-    }
+    public struct PersistenceAssembly;
 }
