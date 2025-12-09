@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Api",
+    "Projects": [
+      {
+        "Path": "MicroServiceApp.Payment.Api\\MicroServiceApp.Payment.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "MicroServiceApp.Gateway\\MicroServiceApp.Gateway.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
