@@ -45,6 +45,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServiceApp.Order.Appli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServiceApp.Order.Persistence", "MicroServiceApp.Order.Persistence\MicroServiceApp.Order.Persistence.csproj", "{0901B1BA-C471-440B-AEAC-8F24F4F1F9AE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "payment", "payment", "{5BB0A1A5-3B47-439E-96DF-E79F8425A134}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServiceApp.Payment.Api", "MicroServiceApp.Payment.Api\MicroServiceApp.Payment.Api.csproj", "{55D6E14B-3104-41C4-A1C2-E2016CB98153}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +95,10 @@ Global
 		{0901B1BA-C471-440B-AEAC-8F24F4F1F9AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0901B1BA-C471-440B-AEAC-8F24F4F1F9AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0901B1BA-C471-440B-AEAC-8F24F4F1F9AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55D6E14B-3104-41C4-A1C2-E2016CB98153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55D6E14B-3104-41C4-A1C2-E2016CB98153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55D6E14B-3104-41C4-A1C2-E2016CB98153}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55D6E14B-3104-41C4-A1C2-E2016CB98153}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +123,8 @@ Global
 		{B76D1617-56DA-4E10-878D-46456A373144} = {BF8B7714-249A-4146-A15C-733869029B82}
 		{B4C7815C-803E-4C03-9F44-2AF0FAEC5B77} = {BF8B7714-249A-4146-A15C-733869029B82}
 		{0901B1BA-C471-440B-AEAC-8F24F4F1F9AE} = {C09F36FD-7884-41DC-BB86-D96BF3B7814A}
+		{5BB0A1A5-3B47-439E-96DF-E79F8425A134} = {14D9E46B-A7AC-427A-B665-6CD06EAFB49C}
+		{55D6E14B-3104-41C4-A1C2-E2016CB98153} = {5BB0A1A5-3B47-439E-96DF-E79F8425A134}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49D60D87-48B6-4356-8726-3BB946FBD1E0}
