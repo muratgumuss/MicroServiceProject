@@ -15,7 +15,7 @@ builder.Services.AddCommonServiceExt(typeof(FileAssembly));
 //builder.Services.AddMasstransitExt(builder.Configuration);
 builder.Services.AddVersioningExt();
 
-//builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 var app = builder.Build();
 app.AddFileGroupEndpointExt(app.AddVersionSetExt());
 
@@ -27,6 +27,6 @@ if (app.Environment.IsDevelopment())
     //app.MapOpenApi();
 }
 
-//app.UseAuthentication();
-//app.UseAuthentication();
+app.UseAuthentication();
+app.UseAuthentication();
 app.Run();

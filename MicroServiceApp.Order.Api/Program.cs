@@ -28,7 +28,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddVersioningExt();
-//builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 //builder.Services.AddRefitConfigurationExt(builder.Configuration);
 
 //builder.Services.AddHostedService<CheckPaymentStatusOrderBackgroundService>();
@@ -44,6 +44,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 // Configure the HTTP request pipeline.
-
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();

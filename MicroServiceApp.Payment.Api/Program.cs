@@ -16,7 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options => { options.UseInMemoryData
 
 // Add services to the container.
 
-//builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
+builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 
 
 var app = builder.Build();
@@ -29,6 +29,6 @@ if (app.Environment.IsDevelopment())
    // app.MapOpenApi();
 }
 
-//app.UseAuthentication();
-//app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
 app.Run();

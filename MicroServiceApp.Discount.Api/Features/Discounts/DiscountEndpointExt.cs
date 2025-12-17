@@ -10,8 +10,8 @@ namespace MicroServiceApp.Discount.Api.Features.Discounts
         {
             app.MapGroup("api/v{version:apiVersion}/discounts").WithTags("discounts").WithApiVersionSet(apiVersionSet)
                 .CreateDiscountGroupItemEndpoint()
-                .GetDiscountByCodeGroupItemEndpoint();
-                //.RequireAuthorization();
+                .GetDiscountByCodeGroupItemEndpoint()
+                .RequireAuthorization();
         }
     }
 }
