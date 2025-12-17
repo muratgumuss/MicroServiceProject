@@ -25,7 +25,10 @@ namespace MicroServiceApp.Shared.Services
                 if (!httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated)
                     throw new UnauthorizedAccessException("User is not authenticated.");
 
-                return httpContextAccessor.HttpContext!.User.Identity!.Name!;
+                var user = httpContextAccessor.HttpContext!.User;
+                return user.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value
+                    ?? user.Claims.FirstOrDefault(c => c.Type == "name")?.Value
+                    ?? user.Identity!.Name!;
             }
         }
 
