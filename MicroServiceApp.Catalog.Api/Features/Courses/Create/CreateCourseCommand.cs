@@ -7,6 +7,6 @@
         public decimal Price { get; init; }
         public Guid CategoryId { get; init; }
 
-        //public IFormFile? Picture { get; set; }
+        public IFormFile? Picture { get; set; }
     }
 }

@@ -24,15 +24,18 @@ namespace MicroServiceApp.Shared.Extensions
                 options.Authority = identityOptions.Address;
                 options.Audience = identityOptions.Audience;
                 options.RequireHttpsMetadata = false;
-
+                options.MapInboundClaims = false;
+                options.MetadataAddress = $"{identityOptions.Address.TrimEnd('/')}/.well-known/openid-configuration";
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateAudience = true,
+                    ValidateIssuer = true,
                     ValidateIssuerSigningKey = true,
                     ValidateLifetime = true,
-                    ValidateIssuer = true,
-                    RoleClaimType = ClaimTypes.Role,
-                    NameClaimType = ClaimTypes.NameIdentifier
+                    RoleClaimType = "roles",   
+                    NameClaimType = "preferred_username"
+                    //RoleClaimType = ClaimTypes.Role,
+                    //NameClaimType = ClaimTypes.NameIdentifier
                 };
 
 
@@ -46,6 +49,8 @@ namespace MicroServiceApp.Shared.Extensions
                 options.Authority = identityOptions.Address;
                 options.Audience = identityOptions.Audience;
                 options.RequireHttpsMetadata = false;
+                options.MapInboundClaims = false;
+                options.MetadataAddress = $"{identityOptions.Address.TrimEnd('/')}/.well-known/openid-configuration";
 
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -61,16 +66,20 @@ namespace MicroServiceApp.Shared.Extensions
                 {
                     policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
                     policy.RequireAuthenticatedUser();
-                    policy.RequireClaim(ClaimTypes.Email);
-                    policy.RequireRole(ClaimTypes.Role, "instructor");
-                });
 
+                    // ClaimTypes.Email YERİNE direkt "email"
+                    policy.RequireClaim("email");
+
+                    // ClaimTypes.Role YERİNE direkt "roles" veya role kontrolü
+                    // Yukarıda RoleClaimType = "roles" yaptığımız için RequireRole çalışacaktır
+                    policy.RequireRole("instructor");
+                });
 
                 options.AddPolicy("Password", policy =>
                 {
                     policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
                     policy.RequireAuthenticatedUser();
-                    policy.RequireClaim(ClaimTypes.Email);
+                    policy.RequireClaim("email"); // Burada da "email" kullanın
                 });
 
                 options.AddPolicy("ClientCredential", policy =>

@@ -2,12 +2,15 @@
 @categoryId=08de2828-2979-b5b0-3473-5af664580000
 @courseId=08de2828-29ed-e5f0-3473-5af664580000
 @userId=64580000-5af6-3473-e09e-08de282829ed
+@passwordToken=eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJoaXVvQWRXUW82T1c1LTI5cmpKaUlwWTQxNzFjUHc4aG5RWFlYX0tjSjVnIn0.eyJleHAiOjE3NjYxNDgwMTAsImlhdCI6MTc2NjE0NzcxMCwianRpIjoiYTIzMDNmNzgtMzc2Mi00ZGU4LTlhMmQtZWMxYjk0YjRhOTI5IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9tZ21UZW5hbnQiLCJhdWQiOlsiY2F0YWxvZy5hcGkiLCJvcmRlci5hcGkiLCJnYXRld2F5LmFwaSIsImJhc2tldC5hcGkiLCJkaXNjb3VudC5hcGkiLCJmaWxlLmFwaSIsInBheW1lbnQuYXBpIiwiYWNjb3VudCJdLCJzdWIiOiIwN2UzMzRmOS03ZjUyLTQzMzktOTM0MS04ZjFhYjY1YTBmNWIiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJ3ZWIiLCJzaWQiOiI3YWQ4NGM3Ni1kZmUwLTQzMDMtOWY1ZC0zYzEzOTEwZDI3ZmMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InBob25lIHByb2ZpbGUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInJvbGVzIjpbImluc3RydWN0b3IiLCJkZWZhdWx0LXJvbGVzLW1nbXRlbmFudCIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXSwibmFtZSI6Ik11cmF0IEfDvG3DvMWfIiwicHJlZmVycmVkX3VzZXJuYW1lIjoibWdtIiwiZ2l2ZW5fbmFtZSI6Ik11cmF0IiwiZmFtaWx5X25hbWUiOiJHw7xtw7zFnyIsImVtYWlsIjoibXVyYXRndW11czA1QGdtYWlsLmNvbSJ9.OPB1cBXRBy9B_MU_w2rRbbZ56cb8sPpYHRXIXOV-eiDgpPRaafe2vkc41iJEqEgM7ovS4wU5we6YUgtF8LNCFJA4Utwz96ZlVKI-4eLYQuk2aFC8oF1IlcrqvfHfLWvEdKfnYfbtDA1YOEiWh306MWhP7w6a-l9LX3rq1u-Eks5VpAJiYfYO6lKLb-EBFfMpgsHvQz3-mObYMdVpnRsB6fFckxKGPRz_BA0Ee9vqYFqUO9MsXeH36yHQQIaJrz06B1HeD2d0BDY87wQB_X_NIzlyh5uhjfBSemToT1i_Dumw-bPimVeFb4Z2Lyhe6P7pAZF7_TCuaAErZFe6OGaoaA
 
 GET {{baseAddress}}/api/v1/categories
 Accept: application/json
+Authorization: Bearer {{passwordToken}}
 ###
 Post {{baseAddress}}/api/v1/categories
 Accept: application/json
+Authorization: Bearer {{passwordToken}}
 Content-Type: application/json
 {
   "name": "Category 3"
@@ -15,9 +18,11 @@ Content-Type: application/json
 ###
 GET {{baseAddress}}/api/v1/categories/{{categoryId}}
 Accept: application/json
+Authorization: Bearer {{passwordToken}}
 ###
 POST {{baseAddress}}/api/v1/courses
 Accept: application/json
+Authorization: Bearer {{passwordToken}}
 Content-Type: application/json
 
 {
@@ -29,6 +34,7 @@ Content-Type: application/json
 ###
 PUT {{baseAddress}}/api/v1/courses
 Accept: application/json
+Authorization: Bearer {{passwordToken}}
 Content-Type: application/json
 
 {
@@ -41,14 +47,18 @@ Content-Type: application/json
 ###
 ###
 GET {{baseAddress}}/api/v1/courses
+Authorization: Bearer {{passwordToken}}
 Accept: application/json
 ###
 GET {{baseAddress}}/api/v1/courses/{{courseId}}
+Authorization: Bearer {{passwordToken}}
 Accept: application/json
 ###
 Delete {{baseAddress}}/api/v1/courses/{{courseId}}
+Authorization: Bearer {{passwordToken}}
 Accept: application/json
 ###
 Get {{baseAddress}}/api/v1/courses/user/{{userId}}
+Authorization: Bearer {{passwordToken}}
 Accept: application/json
 ###

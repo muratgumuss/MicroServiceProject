@@ -1,3 +1,4 @@
+using MicroServiceApp.Bus;
 using MicroServiceApp.File.Api;
 using MicroServiceApp.File.Api.Features.File;
 using MicroServiceApp.Shared.Extensions;
@@ -12,7 +13,7 @@ builder.Services.AddSingleton<IFileProvider>(
     new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 
 builder.Services.AddCommonServiceExt(typeof(FileAssembly));
-//builder.Services.AddMasstransitExt(builder.Configuration);
+builder.Services.AddMasstransitExt(builder.Configuration);
 builder.Services.AddVersioningExt();
 
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
