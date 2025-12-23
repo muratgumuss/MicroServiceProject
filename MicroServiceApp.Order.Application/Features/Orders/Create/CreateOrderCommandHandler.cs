@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using MassTransit;
+using MediatR;
+using MicroServiceApp.Bus.Events;
 using MicroServiceApp.Order.Application.Contracts.Repositories;
 using MicroServiceApp.Order.Application.Contracts.UnitOfWork;
 using MicroServiceApp.Order.Domain.Entities;
@@ -12,8 +14,8 @@ namespace MicroServiceApp.Order.Application.Features.Orders.Create
         IOrderRepository orderRepository,
         IGenericRepository<int, Address> addressRepository,
         IIdentityService identityService,
-        IUnitOfWork unitOfWork
-        //IPublishEndpoint publishEndpoint,
+        IUnitOfWork unitOfWork,
+        IPublishEndpoint publishEndpoint
         //IPaymentService paymentService
         ) : IRequestHandler<CreateOrderCommand, ServiceResult>
     {
@@ -64,8 +66,8 @@ namespace MicroServiceApp.Order.Application.Features.Orders.Create
             await unitOfWork.CommitAsync(cancellationToken);
 
 
-            //await publishEndpoint.Publish(new OrderCreatedEvent(order.Id, identityService.UserId),
-            //    cancellationToken);
+            await publishEndpoint.Publish(new OrderCreatedEvent(order.Id, identityService.UserId),
+                cancellationToken);
             return ServiceResult.SuccessAsNoContent();
         }
     }

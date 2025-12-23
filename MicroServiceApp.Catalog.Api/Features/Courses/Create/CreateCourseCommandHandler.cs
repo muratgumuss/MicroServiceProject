@@ -1,8 +1,11 @@
-﻿namespace MicroServiceApp.Catalog.Api.Features.Courses.Create
+﻿using MicroServiceApp.Bus.Commands;
+using MicroServiceApp.Shared.Services;
+
+namespace MicroServiceApp.Catalog.Api.Features.Courses.Create
 {
-    public class CreateCourseCommandHandler(AppDbContext context, IMapper mapper)
-        //IPublishEndpoint publishEndpoint,
-        //IIdentityService identityService)
+    public class CreateCourseCommandHandler(AppDbContext context, IMapper mapper,
+        IPublishEndpoint publishEndpoint,
+        IIdentityService identityService)
         : IRequestHandler<CreateCourseCommand, ServiceResult<Guid>>
     {
         public async Task<ServiceResult<Guid>> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
@@ -24,7 +27,7 @@
 
             var newCourse = mapper.Map<Course>(request);
             newCourse.Created = DateTime.Now;
-            // newCourse.UserId = identityService.UserId;
+            newCourse.UserId = identityService.UserId;
             newCourse.Id = NewId.NextSequentialGuid(); // index performance
 
             newCourse.Feature = new Feature
@@ -37,20 +40,19 @@
             context.Courses.Add(newCourse);
             await context.SaveChangesAsync(cancellationToken);
 
-            //if (request.Picture is not null)
-            //{
-            //    using var memoryStream = new MemoryStream();
-            //    await request.Picture.CopyToAsync(memoryStream, cancellationToken);
+            if (request.Picture is not null)
+            {
+                using var memoryStream = new MemoryStream();
+                await request.Picture.CopyToAsync(memoryStream, cancellationToken);
 
-            //    var PictureAsByteArray = memoryStream.ToArray();
+                var PictureAsByteArray = memoryStream.ToArray();
 
 
-            //    var uploadCoursePictureCommand =
-            //        new UploadCoursePictureCommand(newCourse.Id, PictureAsByteArray, request.Picture.FileName);
+                var uploadCoursePictureCommand =
+                    new UploadCoursePictureCommand(newCourse.Id, PictureAsByteArray, request.Picture.FileName);
 
-            //    await publishEndpoint.Publish(uploadCoursePictureCommand, cancellationToken);
-            //}
-
+                await publishEndpoint.Publish(uploadCoursePictureCommand, cancellationToken);
+            }
 
             return ServiceResult<Guid>.SuccessAsCreated(newCourse.Id, $"/api/courses/{newCourse.Id}");
         }

@@ -1,3 +1,4 @@
+using MicroServiceApp.Bus;
 using MicroServiceApp.Order.Api.Endpoints.Orders;
 using MicroServiceApp.Order.Application;
 using MicroServiceApp.Order.Application.Contracts.Repositories;
@@ -15,7 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCommonServiceExt(typeof(OrderApplicationAssembly));
-//builder.Services.AddCommonMasstransitExt(builder.Configuration);
+builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
 builder.Services.AddDbContext<AppDbContext>(option =>
 {

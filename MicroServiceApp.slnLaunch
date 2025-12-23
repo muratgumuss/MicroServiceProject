@@ -1,13 +1,13 @@
 [
   {
-    "Name": "Api",
+    "Name": "Catalog+File ",
     "Projects": [
       {
-        "Path": "MicroServiceApp.Payment.Api\\MicroServiceApp.Payment.Api.csproj",
+        "Path": "MicroServiceApp.Catalog.Api\\MicroServiceApp.Catalog.Api.csproj",
         "Action": "Start"
       },
       {
-        "Path": "MicroServiceApp.Gateway\\MicroServiceApp.Gateway.csproj",
+        "Path": "MicroServiceApp.File.Api\\MicroServiceApp.File.Api.csproj",
         "Action": "Start"
       }
     ]

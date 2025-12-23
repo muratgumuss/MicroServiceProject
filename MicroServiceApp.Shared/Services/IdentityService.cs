@@ -3,7 +3,7 @@ using System.Security.Claims;
 
 namespace MicroServiceApp.Shared.Services
 {
-    internal class IdentityService(IHttpContextAccessor httpContextAccessor) : IIdentityService
+    public class IdentityService(IHttpContextAccessor httpContextAccessor) : IIdentityService
     {
         public Guid UserId
         {
@@ -12,9 +12,14 @@ namespace MicroServiceApp.Shared.Services
                 if (!httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated)
                     throw new UnauthorizedAccessException("User is not authenticated.");
 
-                return Guid.Parse(
-                    httpContextAccessor.HttpContext?.User.Claims.FirstOrDefault(c =>
-                        c.Type == ClaimTypes.NameIdentifier)!.Value!);
+                var user = httpContextAccessor.HttpContext?.User;
+                if (user == null || !user.Identity!.IsAuthenticated)
+                    throw new UnauthorizedAccessException("User is not authenticated.");
+
+                var sub = user.FindFirst("sub")?.Value
+                          ?? throw new UnauthorizedAccessException("sub claim missing");
+
+                return Guid.Parse(sub);
             }
         }
 
@@ -22,13 +27,11 @@ namespace MicroServiceApp.Shared.Services
         {
             get
             {
-                if (!httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated)
-                    throw new UnauthorizedAccessException("User is not authenticated.");
-
                 var user = httpContextAccessor.HttpContext!.User;
-                return user.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value
-                    ?? user.Claims.FirstOrDefault(c => c.Type == "name")?.Value
-                    ?? user.Identity!.Name!;
+                // Literal isimleri kullanıyoruz
+                return user.FindFirst("preferred_username")?.Value
+                       ?? user.FindFirst("name")?.Value
+                       ?? "Unknown";
             }
         }
 
@@ -36,11 +39,10 @@ namespace MicroServiceApp.Shared.Services
         {
             get
             {
-                if (!httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated)
-                    throw new UnauthorizedAccessException("User is not authenticated.");
-
-
-                return httpContextAccessor.HttpContext!.User.Claims.Where(x => x.Type == ClaimTypes.Role)
+                // RoleClaimType'ı "roles" yaptığımız için .NET bunları Role tipinde içeri alır
+                // Ama garanti olsun diye her iki ismi de kontrol edebilirsiniz
+                return httpContextAccessor.HttpContext!.User.Claims
+                    .Where(x => x.Type == "roles" || x.Type == "role")
                     .Select(x => x.Value!)
                     .ToList();
             }

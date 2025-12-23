@@ -8,7 +8,7 @@ namespace MicroServiceApp.Catalog.Api.Features.Courses.Create
         public static RouteGroupBuilder CreateCourseGroupItemEndpoint(this RouteGroupBuilder group)
         {
             group.MapPost("/",
-                    async (CreateCourseCommand command, IMediator mediator) =>
+                    async ([FromForm]CreateCourseCommand command, IMediator mediator) =>
                     (await mediator.Send(command)).ToGenericResult())
                 .WithName("CreateCourse")
                 .MapToApiVersion(1, 0)
@@ -16,8 +16,8 @@ namespace MicroServiceApp.Catalog.Api.Features.Courses.Create
                 .Produces(StatusCodes.Status404NotFound)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
                 .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
-                .AddEndpointFilter<ValidationFilter<CreateCourseCommand>>();
-                //.RequireAuthorization(policyNames: "InstructorPolicy");
+                .AddEndpointFilter<ValidationFilter<CreateCourseCommand>>().DisableAntiforgery()
+                .RequireAuthorization(policyNames: "InstructorPolicy");
 
             return group;
         }
