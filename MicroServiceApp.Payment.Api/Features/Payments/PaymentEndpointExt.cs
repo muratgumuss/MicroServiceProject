@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning.Builder;
 using MicroServiceApp.Payment.Api.Features.Payments.Create;
 using MicroServiceApp.Payment.Api.Features.Payments.GetAllPaymentsByUserId;
+using MicroServiceApp.Payment.Api.Features.Payments.GetStatus;
 
 namespace MicroServiceApp.Payment.Api.Features.Payments
 {
@@ -10,8 +11,8 @@ namespace MicroServiceApp.Payment.Api.Features.Payments
         {
             app.MapGroup("api/v{version:apiVersion}/payments").WithTags("payments").WithApiVersionSet(apiVersionSet)
                 .CreatePaymentGroupItemEndpoint()
-                .GetAllPaymentsByUserIdGroupItemEndpoint();
-                //.GetPaymentStatusGroupItemEndpoint();
+                .GetAllPaymentsByUserIdGroupItemEndpoint()
+                .GetPaymentStatusGroupItemEndpoint();
         }
     }
 }
