@@ -1,6 +1,8 @@
 using MicroServiceApp.Bus;
 using MicroServiceApp.Order.Api.Endpoints.Orders;
 using MicroServiceApp.Order.Application;
+using MicroServiceApp.Order.Application.BackgroundServices;
+using MicroServiceApp.Order.Application.Contracts.Refit;
 using MicroServiceApp.Order.Application.Contracts.Repositories;
 using MicroServiceApp.Order.Application.Contracts.UnitOfWork;
 using MicroServiceApp.Order.Persistence;
@@ -30,9 +32,9 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddVersioningExt();
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
-//builder.Services.AddRefitConfigurationExt(builder.Configuration);
+builder.Services.AddRefitConfigurationExt(builder.Configuration);
 
-//builder.Services.AddHostedService<CheckPaymentStatusOrderBackgroundService>();
+builder.Services.AddHostedService<CheckPaymentStatusOrderBackgroundService>();
 // Add services to the container.
 
 var app = builder.Build();
