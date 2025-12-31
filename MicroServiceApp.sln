@@ -60,6 +60,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ui", "ui", "{7BE9715D-38B1-4EAB-B23F-14B3F0BA17ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServiceApp.Web", "MicroServiceApp.Web\MicroServiceApp.Web.csproj", "{82904D49-2473-49CF-8DC4-45D08F538EDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +122,10 @@ Global
 		{FF912F19-2288-4AE9-9D2C-AA61BCD1D7B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF912F19-2288-4AE9-9D2C-AA61BCD1D7B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF912F19-2288-4AE9-9D2C-AA61BCD1D7B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82904D49-2473-49CF-8DC4-45D08F538EDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82904D49-2473-49CF-8DC4-45D08F538EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82904D49-2473-49CF-8DC4-45D08F538EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82904D49-2473-49CF-8DC4-45D08F538EDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -147,6 +155,8 @@ Global
 		{C08593AA-4A36-43AF-837F-8F5F3DEACC7C} = {14D9E46B-A7AC-427A-B665-6CD06EAFB49C}
 		{66156CB0-0198-4218-A18C-DC3BB988F66D} = {C08593AA-4A36-43AF-837F-8F5F3DEACC7C}
 		{FF912F19-2288-4AE9-9D2C-AA61BCD1D7B9} = {BCEEB465-68CC-4C59-A895-C5298F9F7F77}
+		{7BE9715D-38B1-4EAB-B23F-14B3F0BA17ED} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{82904D49-2473-49CF-8DC4-45D08F538EDC} = {7BE9715D-38B1-4EAB-B23F-14B3F0BA17ED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {49D60D87-48B6-4356-8726-3BB946FBD1E0}
