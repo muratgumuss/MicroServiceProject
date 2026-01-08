@@ -8,10 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="Duende.IdentityModel" Version="8.0.0" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MicroServiceApp.Shared\MicroServiceApp.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Instructor\" />
   </ItemGroup>
 
 </Project>
