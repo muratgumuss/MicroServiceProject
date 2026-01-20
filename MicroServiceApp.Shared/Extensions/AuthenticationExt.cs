@@ -32,7 +32,7 @@ namespace MicroServiceApp.Shared.Extensions
                     ValidateIssuer = true,
                     ValidateIssuerSigningKey = true,
                     ValidateLifetime = true,
-                    RoleClaimType = "roles",   
+                    RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
                     NameClaimType = "preferred_username"
                     //RoleClaimType = ClaimTypes.Role,
                     //NameClaimType = ClaimTypes.NameIdentifier

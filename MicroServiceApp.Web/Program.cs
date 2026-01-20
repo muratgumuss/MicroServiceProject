@@ -17,6 +17,16 @@ builder.Services.AddHttpClient<SignUpService>();
 builder.Services.AddHttpClient<SignInService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<CatalogService>();
+//builder.Services.AddScoped<BasketService>();
+builder.Services.AddScoped<UserService>();
+//builder.Services.AddScoped<OrderService>();
+
+
+builder.Services.AddScoped<AuthenticatedHttpClientHandler>();
+builder.Services.AddScoped<ClientAuthenticatedHttpClientHandler>();
+//builder.Services.AddExceptionHandler<UnauthorizedAccessExceptionHandler>();
+
 builder.Services.AddMvc(opt => opt.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 
 builder.Services.AddAuthentication(configureOption =>

@@ -15,8 +15,4 @@
     <ProjectReference Include="..\MicroServiceApp.Shared\MicroServiceApp.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Instructor\" />
-  </ItemGroup>
-
 </Project>
