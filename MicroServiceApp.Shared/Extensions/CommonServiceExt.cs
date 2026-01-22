@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using MicroServiceApp.Shared.ExceptionHandlers;
 using MicroServiceApp.Shared.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,7 +18,7 @@ namespace MicroServiceApp.Shared.Extensions
             services.AddScoped<IIdentityService, IdentityService>();
 
             services.AddAutoMapper(cfg => { }, assembly.Assembly);
-            //services.AddExceptionHandler<GlobalExceptionHandler>();
+            services.AddExceptionHandler<GlobalExceptionHandler>();
             return services;
         }
     }

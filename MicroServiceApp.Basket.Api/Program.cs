@@ -20,6 +20,7 @@ builder.Services.AddScoped<BasketService>();
 builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 var app = builder.Build();
 app.AddBasketGroupEndpointExt(app.AddVersionSetExt());
+app.UseExceptionHandler(x => { });
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

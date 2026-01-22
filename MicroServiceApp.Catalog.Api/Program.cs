@@ -24,7 +24,7 @@ app.AddSeedDataExt().ContinueWith(x =>
 
 app.AddCategoryGroupEndpointExt(app.AddVersionSetExt());
 app.AddCourseGroupEndpointExt(app.AddVersionSetExt());
-
+app.UseExceptionHandler(x => { });
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
