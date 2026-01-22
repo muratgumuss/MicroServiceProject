@@ -28,7 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
    // app.MapOpenApi();
 }
-
+app.UseExceptionHandler(x => { });
 app.UseAuthentication();
 app.UseAuthorization();
 app.Run();

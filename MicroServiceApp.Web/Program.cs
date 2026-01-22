@@ -1,4 +1,5 @@
 using MicroServiceApp.Web.DelegateHandlers;
+using MicroServiceApp.Web.ExceptionHandlers;
 using MicroServiceApp.Web.Extensions;
 using MicroServiceApp.Web.Options;
 using MicroServiceApp.Web.Pages.Auth.SignIn;
@@ -6,7 +7,9 @@ using MicroServiceApp.Web.Pages.Auth.SignUp;
 using MicroServiceApp.Web.Services;
 using MicroServiceApp.Web.Services.Refit;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Localization;
 using Refit;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +28,7 @@ builder.Services.AddScoped<UserService>();
 
 builder.Services.AddScoped<AuthenticatedHttpClientHandler>();
 builder.Services.AddScoped<ClientAuthenticatedHttpClientHandler>();
-//builder.Services.AddExceptionHandler<UnauthorizedAccessExceptionHandler>();
+builder.Services.AddExceptionHandler<UnauthorizedAccessExceptionHandler>();
 
 builder.Services.AddMvc(opt => opt.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 
@@ -56,6 +59,17 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
 }
+
+var cultureInfo = new CultureInfo("en-US");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(cultureInfo),
+    SupportedCultures = [cultureInfo],
+    SupportedUICultures = [cultureInfo]
+});
 
 app.UseRouting();
 app.UseAuthentication();
