@@ -1,4 +1,6 @@
 ﻿using MicroServiceApp.Web.Extensions;
+using MicroServiceApp.Web.Pages.Basket.Dto;
+using MicroServiceApp.Web.Pages.Basket.ViewModel;
 using MicroServiceApp.Web.Services.Refit;
 using System.Net;
 
@@ -9,77 +11,77 @@ namespace MicroServiceApp.Web.Services
         IDiscountRefitService discountRefitService,
         ILogger<BasketService> logger)
     {
-        //public async Task<ServiceResult> CreateOrUpdateBasketAsync(AddBasketRequest request)
-        //{
-        //    var responseAsResult = await basketRefitService.AddBasketItemAsync(request);
+        public async Task<ServiceResult> CreateOrUpdateBasketAsync(AddBasketRequest request)
+        {
+            var responseAsResult = await basketRefitService.AddBasketItemAsync(request);
 
-        //    if (!responseAsResult.IsSuccessStatusCode)
-        //    {
-        //        logger.LogProblemDetails(responseAsResult.Error);
-        //        return ServiceResult.Error("An error occurred while creating or updating the basket");
-        //    }
-
-
-        //    return ServiceResult.Success();
-        //}
+            if (!responseAsResult.IsSuccessStatusCode)
+            {
+                logger.LogProblemDetails(responseAsResult.Error);
+                return ServiceResult.Error("An error occurred while creating or updating the basket");
+            }
 
 
-        //public async Task<ServiceResult<BasketViewModel>> GetBasketsAsync()
-        //{
-        //    var responseAsResult = await basketRefitService.GetBasketsAsync();
-
-        //    if (!responseAsResult.IsSuccessStatusCode)
-        //    {
-        //        if (responseAsResult.StatusCode == HttpStatusCode.NotFound)
-        //            return ServiceResult<BasketViewModel>.Success(BasketViewModel.Empty());
+            return ServiceResult.Success();
+        }
 
 
-        //        logger.LogProblemDetails(responseAsResult.Error);
-        //        return ServiceResult<BasketViewModel>.Error("An error occurred while getting the baskets");
-        //    }
+        public async Task<ServiceResult<BasketViewModel>> GetBasketsAsync()
+        {
+            var responseAsResult = await basketRefitService.GetBasketsAsync();
+
+            if (!responseAsResult.IsSuccessStatusCode)
+            {
+                if (responseAsResult.StatusCode == HttpStatusCode.NotFound)
+                    return ServiceResult<BasketViewModel>.Success(BasketViewModel.Empty());
 
 
-        //    var basketViewModel = new BasketViewModel(
-        //        responseAsResult.Content!.DiscountRate,
-        //        responseAsResult.Content.Coupon,
-        //        responseAsResult.Content.TotalPrice,
-        //        responseAsResult.Content.TotalPriceWithAppliedDiscount,
-        //        responseAsResult.Content.Items.Select(item => new BasketItemViewModel(
-        //            item.Id,
-        //            item.Name,
-        //            item.ImageUrl, item.Price,
-        //            item.PriceByApplyDiscountRate
-        //        )).ToList()
-        //    );
-
-        //    return ServiceResult<BasketViewModel>.Success(basketViewModel);
-        //}
+                logger.LogProblemDetails(responseAsResult.Error);
+                return ServiceResult<BasketViewModel>.Error("An error occurred while getting the baskets");
+            }
 
 
-        //public async Task<ServiceResult<BasketPageViewModel>> GetBasketPageViewModelAsync()
-        //{
-        //    var basketsAsResult = await GetBasketsAsync();
+            var basketViewModel = new BasketViewModel(
+                responseAsResult.Content!.DiscountRate,
+                responseAsResult.Content.Coupon,
+                responseAsResult.Content.TotalPrice,
+                responseAsResult.Content.TotalPriceWithAppliedDiscount,
+                responseAsResult.Content.Items.Select(item => new BasketItemViewModel(
+                    item.Id,
+                    item.Name,
+                    item.ImageUrl, item.Price,
+                    item.PriceByApplyDiscountRate
+                )).ToList()
+            );
 
-        //    if (basketsAsResult.IsFail)
-        //        return ServiceResult<BasketPageViewModel>.Error(basketsAsResult.Fail!);
-
-        //    var basketPageViewModel = new BasketPageViewModel();
-
-
-        //    basketPageViewModel.SetPrice(basketsAsResult.Data!.TotalPrice,
-        //        basketsAsResult.Data.TotalPriceWithAppliedDiscount);
-        //    basketPageViewModel.DiscountRate = basketsAsResult.Data.DiscountRate;
-        //    basketPageViewModel.Coupon = basketsAsResult.Data.Coupon;
-
-
-        //    foreach (var basketItem in basketsAsResult.Data!.Items)
-        //        basketPageViewModel.Items.Add(new BasketViewModelItem(basketItem.Id, basketItem.ImageUrl,
-        //            basketItem.Name,
-        //            basketItem.Price, basketItem.PriceByApplyDiscountRate));
+            return ServiceResult<BasketViewModel>.Success(basketViewModel);
+        }
 
 
-        //    return ServiceResult<BasketPageViewModel>.Success(basketPageViewModel);
-        //}
+        public async Task<ServiceResult<BasketPageViewModel>> GetBasketPageViewModelAsync()
+        {
+            var basketsAsResult = await GetBasketsAsync();
+
+            if (basketsAsResult.IsFail)
+                return ServiceResult<BasketPageViewModel>.Error(basketsAsResult.Fail!);
+
+            var basketPageViewModel = new BasketPageViewModel();
+
+
+            basketPageViewModel.SetPrice(basketsAsResult.Data!.TotalPrice,
+                basketsAsResult.Data.TotalPriceWithAppliedDiscount);
+            basketPageViewModel.DiscountRate = basketsAsResult.Data.DiscountRate;
+            basketPageViewModel.Coupon = basketsAsResult.Data.Coupon;
+
+
+            foreach (var basketItem in basketsAsResult.Data!.Items)
+                basketPageViewModel.Items.Add(new BasketViewModelItem(basketItem.Id, basketItem.ImageUrl,
+                    basketItem.Name,
+                    basketItem.Price, basketItem.PriceByApplyDiscountRate));
+
+
+            return ServiceResult<BasketPageViewModel>.Success(basketPageViewModel);
+        }
 
 
         public async Task<ServiceResult> DeleteBasketAsync(Guid courseId)
@@ -95,27 +97,27 @@ namespace MicroServiceApp.Web.Services
             return ServiceResult.Success();
         }
 
-        //public async Task<ServiceResult> ApplyDiscountAsync(string coupon)
-        //{
-        //    var responseAsResult = await discountRefitService.GetDiscountByCoupon(coupon);
+        public async Task<ServiceResult> ApplyDiscountAsync(string coupon)
+        {
+            var responseAsResult = await discountRefitService.GetDiscountByCoupon(coupon);
 
-        //    if (!responseAsResult.IsSuccessStatusCode) return ServiceResult.FailFromProblemDetails(responseAsResult.Error);
-
-
-        //    var discount = responseAsResult.Content;
-
-        //    var response =
-        //        await basketRefitService.ApplyDiscountRateAsync(new ApplyDiscountRateRequest(coupon,
-        //            responseAsResult.Content!.Rate));
-        //    if (!responseAsResult.IsSuccessStatusCode)
-        //    {
-        //        logger.LogProblemDetails(responseAsResult.Error);
-        //        return ServiceResult.Error("An error occurred while applying the discount");
-        //    }
+            if (!responseAsResult.IsSuccessStatusCode) return ServiceResult.FailFromProblemDetails(responseAsResult.Error);
 
 
-        //    return ServiceResult.Success();
-        //}
+            var discount = responseAsResult.Content;
+
+            var response =
+                await basketRefitService.ApplyDiscountRateAsync(new ApplyDiscountRateRequest(coupon,
+                    responseAsResult.Content!.Rate));
+            if (!responseAsResult.IsSuccessStatusCode)
+            {
+                logger.LogProblemDetails(responseAsResult.Error);
+                return ServiceResult.Error("An error occurred while applying the discount");
+            }
+
+
+            return ServiceResult.Success();
+        }
 
 
         public async Task<ServiceResult> RemoveDiscountAsync()
