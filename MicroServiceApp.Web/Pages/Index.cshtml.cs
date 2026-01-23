@@ -1,20 +1,25 @@
+using MicroServiceApp.Web.PageModels;
+using MicroServiceApp.Web.Services;
+using MicroServiceApp.Web.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MicroServiceApp.Web.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModel(CatalogService catalogService, ILogger<IndexModel> logger) : BasePageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        public List<CourseViewModel>? Courses { get; set; } = [];
 
-        public IndexModel(ILogger<IndexModel> logger)
+
+        public async Task<IActionResult> OnGet()
         {
-            _logger = logger;
-        }
+            var coursesAsResult = await catalogService.GetAllCoursesAsync();
 
-        public void OnGet()
-        {
+            if (coursesAsResult.IsFail) return ErrorPage(coursesAsResult);
 
+            Courses = coursesAsResult.Data!;
+
+            return Page();
         }
     }
 }
