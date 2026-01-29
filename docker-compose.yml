@@ -129,6 +129,54 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+  microserviceapp.basket.api:
+    image: microserviceappbasketapi
+    build:
+      context: .
+      dockerfile: MicroServiceApp.Basket.Api/Dockerfile
+
+  microserviceapp.catalog.api:
+    image: microserviceappcatalogapi
+    build:
+      context: .
+      dockerfile: MicroServiceApp.Catalog.Api/Dockerfile
+
+  microserviceapp.discount.api:
+    image: microserviceappdiscountapi
+    build:
+      context: .
+      dockerfile: MicroServiceApp.Discount.Api/Dockerfile
+
+  microserviceapp.file.api:
+    image: microserviceappfileapi
+    build:
+      context: .
+      dockerfile: MicroServiceApp.File.Api/Dockerfile
+
+  microserviceapp.gateway:
+    image: microserviceappgateway
+    build:
+      context: .
+      dockerfile: MicroServiceApp.Gateway/Dockerfile
+
+  microserviceapp.order.api:
+    image: microserviceapporderapi
+    build:
+      context: .
+      dockerfile: MicroServiceApp.Order.Api/Dockerfile
+
+  microserviceapp.payment.api:
+    image: microserviceapppaymentapi
+    build:
+      context: .
+      dockerfile: MicroServiceApp.Payment.Api/Dockerfile
+
+  microserviceapp.web:
+    image: microserviceappweb
+    build:
+      context: .
+      dockerfile: MicroServiceApp.Web/Dockerfile
+
 volumes:
   mongo.db.catalog.volume:
   redis.db.basket.volume:
@@ -137,3 +185,11 @@ volumes:
   postgres.db.keycloak.volume:
   postgres.db.keycloak.ui.volume:
   rabbitmq_data:
+
+
+
+
+
+
+
+

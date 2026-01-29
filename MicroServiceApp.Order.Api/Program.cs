@@ -38,6 +38,14 @@ builder.Services.AddHostedService<CheckPaymentStatusOrderBackgroundService>();
 // Add services to the container.
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<AppDbContext>();
+   await context.Database.MigrateAsync();
+}
+
 app.AddOrderGroupEndpointExt(app.AddVersionSetExt());
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment()) app.MapOpenApi();
