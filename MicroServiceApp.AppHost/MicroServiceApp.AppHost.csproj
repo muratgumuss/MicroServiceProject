@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>5b5dc05b-6618-4bda-a2f4-2f37c268bda8</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="13.1.0" />
+    <PackageReference Include="Aspire.Hosting.MongoDB" Version="13.1.0" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="13.1.0" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.1.0" />
+    <PackageReference Include="Aspire.Hosting.Redis" Version="13.1.0" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="13.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicroServiceApp.Basket.Api\MicroServiceApp.Basket.Api.csproj" />
+    <ProjectReference Include="..\MicroServiceApp.Catalog.Api\MicroServiceApp.Catalog.Api.csproj" />
+    <ProjectReference Include="..\MicroServiceApp.Discount.Api\MicroServiceApp.Discount.Api.csproj" />
+    <ProjectReference Include="..\MicroServiceApp.File.Api\MicroServiceApp.File.Api.csproj" />
+    <ProjectReference Include="..\MicroServiceApp.Gateway\MicroServiceApp.Gateway.csproj" />
+    <ProjectReference Include="..\MicroServiceApp.Order.Api\MicroServiceApp.Order.Api.csproj" />
+    <ProjectReference Include="..\MicroServiceApp.Payment.Api\MicroServiceApp.Payment.Api.csproj" />
+    <ProjectReference Include="..\MicroServiceApp.Web\MicroServiceApp.Web.csproj" />
+  </ItemGroup>
+
+</Project>

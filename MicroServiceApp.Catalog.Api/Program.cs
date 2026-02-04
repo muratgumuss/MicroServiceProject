@@ -1,4 +1,4 @@
-﻿using MicroServiceApp.Bus;
+using MicroServiceApp.Bus;
 using MicroServiceApp.Catalog.Api;
 using MicroServiceApp.Catalog.Api.Features.Categories;
 using MicroServiceApp.Catalog.Api.Features.Courses;
@@ -6,6 +6,8 @@ using MicroServiceApp.Catalog.Api.Options;
 using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -17,6 +19,8 @@ builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 builder.Services.AddMasstransitExt(builder.Configuration);
 //builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 app.AddSeedDataExt().ContinueWith(x =>
 {
     Console.WriteLine(x.IsFaulted ? x.Exception?.Message : "Seed data has been saved successfully");

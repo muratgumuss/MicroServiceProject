@@ -64,6 +64,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ui", "ui", "{7BE9715D-38B1-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServiceApp.Web", "MicroServiceApp.Web\MicroServiceApp.Web.csproj", "{82904D49-2473-49CF-8DC4-45D08F538EDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServiceApp.AppHost", "MicroServiceApp.AppHost\MicroServiceApp.AppHost.csproj", "{8A370A44-2FC1-4856-9B80-3476E96FD559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServiceApp.ServiceDefaults", "MicroServiceApp.ServiceDefaults\MicroServiceApp.ServiceDefaults.csproj", "{58393EFA-8D93-4C0D-7D5B-5045C05851C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,6 +130,14 @@ Global
 		{82904D49-2473-49CF-8DC4-45D08F538EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82904D49-2473-49CF-8DC4-45D08F538EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82904D49-2473-49CF-8DC4-45D08F538EDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A370A44-2FC1-4856-9B80-3476E96FD559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A370A44-2FC1-4856-9B80-3476E96FD559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A370A44-2FC1-4856-9B80-3476E96FD559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A370A44-2FC1-4856-9B80-3476E96FD559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58393EFA-8D93-4C0D-7D5B-5045C05851C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58393EFA-8D93-4C0D-7D5B-5045C05851C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58393EFA-8D93-4C0D-7D5B-5045C05851C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58393EFA-8D93-4C0D-7D5B-5045C05851C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddVersioningExt();
@@ -20,6 +22,8 @@ builder.Services.AddAuthenticationAndAuthorizationExt(builder.Configuration);
 
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 app.AddPaymentGroupEndpointExt(app.AddVersionSetExt());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
