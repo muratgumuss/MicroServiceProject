@@ -1,10 +1,8 @@
 using Aspire.Hosting;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-
-#region RabbtitMQ
 var builder = DistributedApplication.CreateBuilder(args);
-
+#region RabbtitMQ
 var rabbitMqUserName = builder.AddParameter("RABBITMQ-USERNAME");
 var rabbitMqPassword = builder.AddParameter("RABBITMQ-PASSWORD");
 var rabbitMq = builder.AddRabbitMQ("rabbitMQ", rabbitMqUserName, rabbitMqPassword, 5672)
