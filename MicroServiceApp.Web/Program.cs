@@ -14,6 +14,8 @@ using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 
 //builder.Services.AddDataProtection()
 //    .PersistKeysToFileSystem(Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "keys")))
@@ -42,7 +44,7 @@ builder.Services.AddExceptionHandler<UnauthorizedAccessExceptionHandler>();
 builder.Services.AddRefitClient<ICatalogRefitService>().ConfigureHttpClient(configure =>
 {
     var microserviceOption = builder.Configuration.GetSection(nameof(MicroserviceOption)).Get<MicroserviceOption>();
-    configure.BaseAddress = new Uri(microserviceOption!.Catalog.BaseAddress);
+    configure.BaseAddress = new Uri("http://microserviceapp-catalog-api");
 }).AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
     .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
 
@@ -50,7 +52,7 @@ builder.Services.AddRefitClient<ICatalogRefitService>().ConfigureHttpClient(conf
 builder.Services.AddRefitClient<IBasketRefitService>().ConfigureHttpClient(configure =>
 {
     var microserviceOption = builder.Configuration.GetSection(nameof(MicroserviceOption)).Get<MicroserviceOption>();
-    configure.BaseAddress = new Uri(microserviceOption!.Basket.BaseAddress);
+    configure.BaseAddress = new Uri("http://microserviceapp-basket-api");
 }).AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
     .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
 
@@ -58,7 +60,7 @@ builder.Services.AddRefitClient<IBasketRefitService>().ConfigureHttpClient(confi
 builder.Services.AddRefitClient<IDiscountRefitService>().ConfigureHttpClient(configure =>
 {
     var microserviceOption = builder.Configuration.GetSection(nameof(MicroserviceOption)).Get<MicroserviceOption>();
-    configure.BaseAddress = new Uri(microserviceOption!.Discount.BaseAddress);
+    configure.BaseAddress = new Uri("http://microserviceapp-discount-api");
 }).AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
     .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
 
@@ -66,7 +68,7 @@ builder.Services.AddRefitClient<IDiscountRefitService>().ConfigureHttpClient(con
 builder.Services.AddRefitClient<IOrderRefitService>().ConfigureHttpClient(configure =>
 {
     var microserviceOption = builder.Configuration.GetSection(nameof(MicroserviceOption)).Get<MicroserviceOption>();
-    configure.BaseAddress = new Uri(microserviceOption!.Order.BaseAddress);
+    configure.BaseAddress = new Uri("http://microserviceapp-order-api");
 }).AddHttpMessageHandler<AuthenticatedHttpClientHandler>()
     .AddHttpMessageHandler<ClientAuthenticatedHttpClientHandler>();
 
@@ -87,6 +89,8 @@ builder.Services.AddAuthentication(configureOption =>
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 
 var cultureInfo = new CultureInfo("en-US");

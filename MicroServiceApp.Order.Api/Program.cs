@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 
 //builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
@@ -20,10 +22,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCommonServiceExt(typeof(OrderApplicationAssembly));
 builder.Services.AddCommonMasstransitExt(builder.Configuration);
 
-builder.Services.AddDbContext<AppDbContext>(option =>
-{
-    option.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
-});
+//builder.Services.AddDbContext<AppDbContext>(option =>
+//{
+//    option.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
+//});// .net aspire
+builder.AddSqlServerDbContext<AppDbContext>("order-db-aspire");
 builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
 
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
@@ -38,12 +41,19 @@ builder.Services.AddHostedService<CheckPaymentStatusOrderBackgroundService>();
 // Add services to the container.
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await dbContext.Database.MigrateAsync();
+}
+
+app.MapDefaultEndpoints();
 
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<AppDbContext>();
-   await context.Database.MigrateAsync();
+    await context.Database.MigrateAsync();
 }
 
 app.AddOrderGroupEndpointExt(app.AddVersionSetExt());

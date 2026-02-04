@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MicroServiceApp.Bus\MicroServiceApp.Bus.csproj" />
+    <ProjectReference Include="..\MicroServiceApp.ServiceDefaults\MicroServiceApp.ServiceDefaults.csproj" />
     <ProjectReference Include="..\MicroServiceApp.Shared\MicroServiceApp.Shared.csproj" />
   </ItemGroup>
 
