@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCommonServiceExt(typeof(BasketAssembly));
 builder.Services.AddMasstransitExt(builder.Configuration);
 
-builder.AddRedisDistributedCache("redis-db-basket");//.net aspire
+builder.AddRedisDistributedCache("redis-db-basket"); //.net aspire kullanılıyor ise bu şekilde eklenebilir. Redis bağlantısı için gerekli bilgileri appsettings.json veya ortam değişkenlerinden alabilirsiniz.
 //builder.Services.AddStackExchangeRedisCache(options =>
 //{
 //    options.Configuration = builder.Configuration.GetConnectionString("Redis");
